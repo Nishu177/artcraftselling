@@ -22,16 +22,19 @@
 <div id="orders" style="display:flex; flex-direction:column; align-items:center;"></div>
 
 <script>
-// FETCH ORDERS FROM BACKEND
-fetch("http://localhost:5000/orders")
+// 🔥 LIVE BACKEND FETCH
+fetch("https://artcraft-backend.onrender.com/orders")
 .then(res => res.json())
 .then(data => {
   const ordersDiv = document.getElementById("orders");
 
+  // EMPTY CHECK
   if(data.length === 0){
-    ordersDiv.innerHTML = "<p>No orders yet ❌</p>";
+    ordersDiv.innerHTML = "<h3>No orders yet ❌</h3>";
+    return;
   }
 
+  // SHOW ORDERS
   data.forEach(order => {
     ordersDiv.innerHTML += `
       <div class="card" style="width:300px; margin:10px; text-align:left;">
@@ -46,7 +49,10 @@ fetch("http://localhost:5000/orders")
     `;
   });
 })
-.catch(err => console.log(err));
+.catch(err => {
+  console.log(err);
+  document.getElementById("orders").innerHTML = "<h3>Error loading orders ❌</h3>";
+});
 </script>
 
 </body>
