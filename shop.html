@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shop - Art & Craft</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <h2>Art & Craft 🎨</h2>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart 🛒</a>
+    <a href="admin.html">Admin</a>
+  </div>
+</nav>
+
+<h1 style="text-align:center;">Shop Our Crafts 🛍️</h1>
+
+<!-- PRODUCTS -->
+<div id="products" class="cards"></div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// ADD TO CART FUNCTION
+function addToCart(name, price, image) {
+  cart.push({name, price, image});
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Added to cart 💖");
+}
+
+// STATIC PRODUCTS (fast + attractive)
+const products = [
+  {
+    name: "Handmade Vase",
+    price: 200,
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+  },
+  {
+    name: "Wall Hanging",
+    price: 300,
+    image: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4"
+  },
+  {
+    name: "Craft Kit",
+    price: 150,
+    image: "https://images.unsplash.com/photo-1503602642458-232111445657"
+  },
+  {
+    name: "Bottle Art",
+    price: 250,
+    image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36"
+  }
+];
+
+// SHOW PRODUCTS
+const container = document.getElementById("products");
+
+products.forEach(p => {
+  container.innerHTML += `
+    <div class="card">
+      <img src="${p.image}">
+      <h3>${p.name}</h3>
+      <p>₹${p.price}</p>
+      <button onclick="addToCart('${p.name}', ${p.price}, '${p.image}')">
+        Add to Cart 🛒
+      </button>
+    </div>
+  `;
+});
+</script>
+
+</body>
+</html>
