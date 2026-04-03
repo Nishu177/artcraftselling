@@ -44,7 +44,7 @@ function placeOrder() {
     products: cart
   };
 
-  fetch("http://localhost:5000/order", {
+  fetch("https://artcraft-backend.onrender.com/order", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
